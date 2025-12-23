@@ -48,19 +48,26 @@ export function DoubleClickEditable({
 
   const handleBlur = (e: React.FocusEvent<HTMLDivElement>) => {
     setIsEditable(false);
-    const newContent = e.currentTarget.innerHTML;
+    const newContent = e.currentTarget.innerText;
     onSave?.(newContent);
+  };
+
+  const handlePaste = (e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const text = e.clipboardData.getData("text/plain");
+    document.execCommand("insertText", false, text);
   };
 
   return (
     <Text
       {...others}
-      contentEditable={isEditable}
+      contentEditable={isEditable ? "plaintext-only" : false}
       suppressContentEditableWarning
       style={{ 
         border: "1px dashed #ccc", 
         padding: "4px",
         cursor: isEditable ? "text" : "pointer",
+        whiteSpace: "pre-wrap",
         ...style 
       }}
       onMouseDown={(e) => {
@@ -70,6 +77,7 @@ export function DoubleClickEditable({
       }}
       onDoubleClick={handleDoubleClick}
       onBlur={handleBlur}
+      onPaste={handlePaste}
     >
       {children}
     </Text>
