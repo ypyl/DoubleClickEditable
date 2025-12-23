@@ -24,17 +24,23 @@ Ensure you have `@mantine/core`, `@mantine/hooks`, `react`, and `react-dom` inst
 ## Usage
 
 ```tsx
+import { useState } from 'react';
 import { DoubleClickEditable } from 'mantine-double-click-editable';
 import '@mantine/core/styles.css';
 
 function MyComponent() {
+  const [content, setContent] = useState('Double-click to edit me!');
+
   return (
     <DoubleClickEditable
-      onSave={(content) => console.log('Saved:', content)}
+      onSave={(newContent) => {
+        console.log('Saved:', newContent);
+        setContent(newContent);
+      }}
       c="blue"
       fw={700}
     >
-      Double-click to edit me!
+      {content}
     </DoubleClickEditable>
   );
 }
@@ -44,6 +50,7 @@ function MyComponent() {
 
 - **Double-click to edit:** Seamlessly transition between view and edit modes.
 - **Precise Caret Placement:** The cursor is placed exactly where you double-click, even in the middle of text.
+- **Virtual DOM Stable:** Decoupled DOM management prevents cursor jumps or data loss during React re-renders.
 - **Mantine Integration:** Inherits all props from Mantine's `Text` component.
 - **TypeScript Support:** Fully typed out of the box.
 

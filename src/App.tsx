@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { MantineProvider, Container, Title, Stack } from "@mantine/core";
 import { DoubleClickEditable } from "./components/DoubleClickEditable";
 
@@ -7,15 +8,20 @@ import "@mantine/core/styles.css";
 import "./App.css";
 
 function App() {
+  const [content, setContent] = useState("Double-click here to edit this text directly.");
+
   return (
     <MantineProvider>
       <Container size="sm" py="xl">
         <Stack gap="md">
           <Title order={2}>Editable Components</Title>
           <DoubleClickEditable
-            onSave={(content) => console.log("Saved content:", content)}
+            onSave={(newContent) => {
+              console.log("Saved content:", newContent);
+              setContent(newContent);
+            }}
           >
-            Double-click here to edit this text directly.
+            {content}
           </DoubleClickEditable>
         </Stack>
       </Container>

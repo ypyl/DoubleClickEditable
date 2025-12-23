@@ -15,12 +15,14 @@ export function DoubleClickEditable({
 }: DoubleClickEditableProps) {
   const [isEditable, setIsEditable] = useState(false);
   const textRef = useRef<HTMLDivElement>(null);
+  const lastSyncValue = useRef<string | null>(null);
 
   // Sync the DOM content with the children prop when NOT editing.
   // This ensures that if the prop changes externally, the UI updates.
   useEffect(() => {
-    if (!isEditable && textRef.current) {
+    if (!isEditable && textRef.current && children !== lastSyncValue.current) {
       textRef.current.innerText = children;
+      lastSyncValue.current = children;
     }
   }, [children, isEditable]);
 
