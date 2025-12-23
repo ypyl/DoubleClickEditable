@@ -1,73 +1,49 @@
-# React + TypeScript + Vite
+# mantine-double-click-editable
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A double-click-to-edit text component for [Mantine](https://mantine.dev/), with precise caret placement.
 
-Currently, two official plugins are available:
+[![npm version](https://img.shields.io/npm/v/mantine-double-click-editable.svg)](https://www.npmjs.com/package/mantine-double-click-editable)
+[![github](https://img.shields.io/badge/github-repo-black?logo=github)](https://github.com/ypyl/DoubleClickEditable)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## React Compiler
+## Installation
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install mantine-double-click-editable
+# or
+yarn add mantine-double-click-editable
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Peer Dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Ensure you have `@mantine/core`, `@mantine/hooks`, `react`, and `react-dom` installed in your project.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Usage
+
+```tsx
+import { DoubleClickEditable } from 'mantine-double-click-editable';
+import '@mantine/core/styles.css';
+
+function MyComponent() {
+  return (
+    <DoubleClickEditable
+      onSave={(content) => console.log('Saved:', content)}
+      c="blue"
+      fw={700}
+    >
+      Double-click to edit me!
+    </DoubleClickEditable>
+  );
+}
 ```
+
+## Features
+
+- **Double-click to edit:** Seamlessly transition between view and edit modes.
+- **Precise Caret Placement:** The cursor is placed exactly where you double-click, even in the middle of text.
+- **Mantine Integration:** Inherits all props from Mantine's `Text` component.
+- **TypeScript Support:** Fully typed out of the box.
+
+## License
+
+MIT

@@ -1,0 +1,31 @@
+# Source files
+src/
+public/
+index.html
+
+# Configuration files
+vite.config.ts
+tsconfig.json
+tsconfig.node.json
+tsconfig.app.json
+.eslintrc.cjs
+.gitignore
+postcss.config.js
+
+# Test files
+tests/
+*.spec.ts
+*.test.ts
+
+# Documentation (except README)
+docs/
+CHANGELOG.md
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# GitHub
+.github/
+.git/
