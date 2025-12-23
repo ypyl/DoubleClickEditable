@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Text } from "@mantine/core";
 import type { TextProps } from "@mantine/core";
 
@@ -14,6 +14,15 @@ export function DoubleClickEditable({
   ...others 
 }: DoubleClickEditableProps) {
   const [isEditable, setIsEditable] = useState(false);
+  const textRef = useRef<HTMLDivElement>(null);
+
+  // Sync the DOM content with the children prop when NOT editing.
+  // This ensures that if the prop changes externally, the UI updates.
+  useEffect(() => {
+    if (!isEditable && textRef.current) {
+      textRef.current.innerText = children;
+    }
+  }, [children, isEditable]);
 
   const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {
     setIsEditable(true);
@@ -61,6 +70,7 @@ export function DoubleClickEditable({
   return (
     <Text
       {...others}
+      ref={textRef}
       contentEditable={isEditable ? "plaintext-only" : false}
       suppressContentEditableWarning
       style={{ 
@@ -78,8 +88,6 @@ export function DoubleClickEditable({
       onDoubleClick={handleDoubleClick}
       onBlur={handleBlur}
       onPaste={handlePaste}
-    >
-      {children}
-    </Text>
+    />
   );
 }
