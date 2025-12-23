@@ -5,6 +5,9 @@ A double-click-to-edit text component for [Mantine](https://mantine.dev/), with 
 [![npm version](https://img.shields.io/npm/v/mantine-double-click-editable.svg)](https://www.npmjs.com/package/mantine-double-click-editable)
 [![github](https://img.shields.io/badge/github-repo-black?logo=github)](https://github.com/ypyl/DoubleClickEditable)
 
+## Demo
+
+![demo](./msedge_g0RHaauDdc.gif)
 
 ## Installation
 
